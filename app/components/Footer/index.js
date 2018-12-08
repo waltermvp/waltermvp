@@ -22,6 +22,14 @@ function Footer() {
             author: <A href="https://twitter.com/mxstbr">Max Stoiber</A>,
           }}
         />
+        <br />
+        <br />
+        <br />
+        <br />
+
+        <A href="https://calendly.com/waltermvp/15min">
+          Click here to schedule a free 15 minute consultation.
+        </A>
       </section>
     </Wrapper>
   );
