@@ -10,6 +10,13 @@
       "StackName": "amplify-waltermvp-dev-143642",
       "StackId": "arn:aws:cloudformation:us-east-1:902034749111:stack/amplify-waltermvp-dev-143642/6ecb42c0-9c1e-11ed-bdf9-0e7f8a5bfcb7",
       "AmplifyAppId": "d3avargtcom2ah"
+    },
+    "categories": {
+      "function": {
+        "userCreated": {
+          "sourceEmail": "walter.vargaspena@gmail.com"
+        }
+      }
     }
   }
 }
