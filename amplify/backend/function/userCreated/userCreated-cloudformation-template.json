@@ -95,12 +95,12 @@
         "RoleName": {
           "Fn::If": [
             "ShouldNotCreateEnvResources",
-            "waltermvpLambdaRole3e13eb1f",
+            "waltermvpLambdaRole6059ae87",
             {
               "Fn::Join": [
                 "",
                 [
-                  "waltermvpLambdaRole3e13eb1f",
+                  "waltermvpLambdaRole6059ae87",
                   "-",
                   {
                     "Ref": "env"
@@ -147,7 +147,6 @@
                 ]
               }
             },
-
             {
               "Effect": "Allow",
               "Action": ["ses:SendEmail", "ses:SendRawEmail"],
