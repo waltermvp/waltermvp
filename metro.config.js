@@ -1,5 +1,6 @@
 const { getDefaultConfig } = require("metro-config")
 const { getDefaultConfig: getDefaultExpoConfig } = require("@expo/metro-config")
+const exclusionList = require("metro-config/src/defaults/exclusionList")
 
 let metroConfig
 let isExpo = false
@@ -46,6 +47,7 @@ if (isExpo) {
          */
         resolveRequest: MetroSymlinksResolver(),
         assetExts: [...defaultConfig.resolver.assetExts, "bin"],
+        blacklistRE: exclusionList([/#current-cloud-backend\/.*/]),
       },
     })
   })()

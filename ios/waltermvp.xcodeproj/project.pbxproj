@@ -238,6 +238,8 @@
 					};
 					13B07F861A680F5B00A75B9A = {
 						LastSwiftMigration = 1120;
+						DevelopmentTeam = "22X6D48M4G";
+						ProvisioningStyle = Automatic;
 					};
 				};
 			};
@@ -541,6 +543,9 @@
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
 				VERSIONING_SYSTEM = "apple-generic";
+				DEVELOPMENT_TEAM = "22X6D48M4G";
+				CODE_SIGN_IDENTITY = "Apple Development";
+				CODE_SIGN_STYLE = Automatic;
 			};
 			name = Debug;
 		};
@@ -566,6 +571,9 @@
 				PRODUCT_NAME = waltermvp;
 				SWIFT_VERSION = 5.0;
 				VERSIONING_SYSTEM = "apple-generic";
+				DEVELOPMENT_TEAM = "22X6D48M4G";
+				CODE_SIGN_IDENTITY = "Apple Development";
+				CODE_SIGN_STYLE = Automatic;
 			};
 			name = Release;
 		};

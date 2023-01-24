@@ -1,0 +1,23 @@
+{
+  "dev": {
+    "awscloudformation": {
+      "AuthRoleName": "amplify-waltermvp-dev-195726-authRole",
+      "UnauthRoleArn": "arn:aws:iam::902034749111:role/amplify-waltermvp-dev-195726-unauthRole",
+      "AuthRoleArn": "arn:aws:iam::902034749111:role/amplify-waltermvp-dev-195726-authRole",
+      "Region": "us-east-1",
+      "DeploymentBucketName": "amplify-waltermvp-dev-195726-deployment",
+      "UnauthRoleName": "amplify-waltermvp-dev-195726-unauthRole",
+      "StackName": "amplify-waltermvp-dev-195726",
+      "StackId": "arn:aws:cloudformation:us-east-1:902034749111:stack/amplify-waltermvp-dev-195726/2a47be60-4fe6-11ec-96fe-12d469082259",
+      "AmplifyAppId": "d2xkxq13j4v8gg"
+    },
+    "categories": {
+      "function": {
+        "userCreated": {
+          "deploymentBucketName": "amplify-waltermvp-dev-195726-deployment",
+          "s3Key": "amplify-builds/userCreated-676b73484b6e6e766568-build.zip"
+        }
+      }
+    }
+  }
+}
