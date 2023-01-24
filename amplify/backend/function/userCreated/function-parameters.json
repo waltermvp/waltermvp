@@ -1,9 +1,0 @@
-{
-  "lambdaLayers": [],
-  "environmentVariableList": [
-    {
-      "cloudFormationParameterName": "sourceEmail",
-      "environmentVariableName": "SOURCE_EMAIL"
-    }
-  ]
-}
