@@ -1,7 +1,6 @@
-build/
-node_modules/
-internals/generators/
-internals/scripts/
-package-lock.json
-yarn.lock
+node_modules
+ios
+android
+.vscode
+ignite/ignite.json
 package.json

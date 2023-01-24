@@ -1,33 +1,39 @@
-module.exports = {
-  presets: [
-    [
-      '@babel/preset-env',
-      {
-        modules: false,
-      },
-    ],
-    '@babel/preset-react',
+const plugins = [
+  [
+    "@babel/plugin-proposal-decorators",
+    {
+      legacy: true,
+    },
   ],
-  plugins: [
-    'styled-components',
-    '@babel/plugin-proposal-class-properties',
-    '@babel/plugin-syntax-dynamic-import',
-  ],
+  ["@babel/plugin-proposal-optional-catch-binding"],
+  "react-native-reanimated/plugin", // NOTE: this must be last in the plugins
+]
+
+const vanillaConfig = {
+  presets: ["module:metro-react-native-babel-preset"],
   env: {
-    production: {
-      only: ['app'],
-      plugins: [
-        'lodash',
-        'transform-react-remove-prop-types',
-        '@babel/plugin-transform-react-inline-elements',
-        '@babel/plugin-transform-react-constant-elements',
-      ],
-    },
-    test: {
-      plugins: [
-        '@babel/plugin-transform-modules-commonjs',
-        'dynamic-import-node',
-      ],
-    },
+    production: {},
   },
-};
+  plugins,
+}
+
+const expoConfig = {
+  presets: ["babel-preset-expo"],
+  env: {
+    production: {},
+  },
+  plugins,
+}
+
+let isExpo = false
+try {
+  const Constants = require("expo-constants")
+  // True if the app is running in an `expo build` app or if it's running in Expo Go.
+  isExpo =
+    Constants.executionEnvironment === "standalone" ||
+    Constants.executionEnvironment === "storeClient"
+} catch {}
+
+const babelConfig = isExpo ? expoConfig : vanillaConfig
+
+module.exports = babelConfig
