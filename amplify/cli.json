@@ -10,8 +10,14 @@
       "skipoverridemutationinputtypes": true,
       "transformerversion": 2,
       "suppressschemamigrationprompt": true,
-      "securityEnhancementNotification": false,
-      "showFieldAuthNotification": false
+      "securityenhancementnotification": false,
+      "showfieldauthnotification": false,
+      "usesubusernamefordefaultidentityclaim": true,
+      "usefieldnameforprimarykeyconnectionfield": false,
+      "enableautoindexquerynames": true,
+      "respectprimarykeyattributesonconnectionfield": true,
+      "shoulddeepmergedirectiveconfigdefaults": false,
+      "populateownerfieldforstaticgroupauth": true
     },
     "frontend-ios": {
       "enablexcodeintegration": true

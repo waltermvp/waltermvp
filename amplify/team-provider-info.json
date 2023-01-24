@@ -1,15 +1,15 @@
 {
   "dev": {
     "awscloudformation": {
-      "AuthRoleName": "amplify-waltermvp-dev-195726-authRole",
-      "UnauthRoleArn": "arn:aws:iam::902034749111:role/amplify-waltermvp-dev-195726-unauthRole",
-      "AuthRoleArn": "arn:aws:iam::902034749111:role/amplify-waltermvp-dev-195726-authRole",
+      "AuthRoleName": "amplify-waltermvp-dev-143642-authRole",
+      "UnauthRoleArn": "arn:aws:iam::902034749111:role/amplify-waltermvp-dev-143642-unauthRole",
+      "AuthRoleArn": "arn:aws:iam::902034749111:role/amplify-waltermvp-dev-143642-authRole",
       "Region": "us-east-1",
-      "DeploymentBucketName": "amplify-waltermvp-dev-195726-deployment",
-      "UnauthRoleName": "amplify-waltermvp-dev-195726-unauthRole",
-      "StackName": "amplify-waltermvp-dev-195726",
-      "StackId": "arn:aws:cloudformation:us-east-1:902034749111:stack/amplify-waltermvp-dev-195726/2a47be60-4fe6-11ec-96fe-12d469082259",
-      "AmplifyAppId": "d2xkxq13j4v8gg"
+      "DeploymentBucketName": "amplify-waltermvp-dev-143642-deployment",
+      "UnauthRoleName": "amplify-waltermvp-dev-143642-unauthRole",
+      "StackName": "amplify-waltermvp-dev-143642",
+      "StackId": "arn:aws:cloudformation:us-east-1:902034749111:stack/amplify-waltermvp-dev-143642/6ecb42c0-9c1e-11ed-bdf9-0e7f8a5bfcb7",
+      "AmplifyAppId": "d3avargtcom2ah"
     }
   }
 }
