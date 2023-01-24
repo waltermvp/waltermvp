@@ -30,6 +30,7 @@ type User @model {
   email: AWSEmail
   confirmed: Boolean
 }
+
 type Org @model {
   id: ID!
   users: [User] @hasMany

@@ -5,12 +5,19 @@
 Amplify Params - DO NOT EDIT */
 const sourceEmail = process.env.SOURCE_EMAIL
 var aws = require("aws-sdk")
+const { async } = require("regenerator-runtime")
 var ses = new aws.SES({ region: "us-east-1" })
 
+/**
+ * @type {import('@types/aws-lambda').APIGatewayProxyHandler}
+ */
 exports.handler = async (event) => {
-  //eslint-disable-line
-  for (var i = 0; i < event.Records.length; i++) {
-    const record = event.Records[i]
+  console.log(`EVENT: ${JSON.stringify(event)}`)
+
+  for (const record of event.Records) {
+    console.log(record.eventID)
+    console.log(record.eventName)
+    console.log("DynamoDB Record: %j", record.dynamodb)
 
     if (record.eventName === "INSERT") {
       const newUser = aws.DynamoDB.Converter.unmarshall(record.dynamodb.NewImage)
@@ -33,6 +40,5 @@ exports.handler = async (event) => {
       console.log("result is", result)
     }
   }
-
   return Promise.resolve("Successfully processed DynamoDB record")
 }
