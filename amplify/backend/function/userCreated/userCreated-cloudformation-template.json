@@ -1,6 +1,6 @@
 {
   "AWSTemplateFormatVersion": "2010-09-09",
-  "Description": "Lambda Function resource stack creation using Amplify CLI",
+  "Description": "{\"createdOn\":\"Linux\",\"createdBy\":\"Amplify\",\"createdWith\":\"10.6.2\",\"stackType\":\"function-Lambda\",\"metadata\":{}}",
   "Parameters": {
     "CloudWatchRule": {
       "Type": "String",
@@ -16,16 +16,13 @@
     "s3Key": {
       "Type": "String"
     },
-
     "sourceEmail": {
       "Type": "String"
     },
-
     "apiwaltermvpGraphQLAPIIdOutput": {
       "Type": "String",
       "Default": "apiwaltermvpGraphQLAPIIdOutput"
     },
-
     "apiwaltermvpGraphQLAPIEndpointOutput": {
       "Type": "String",
       "Default": "apiwaltermvpGraphQLAPIEndpointOutput"
@@ -78,12 +75,23 @@
         },
         "Environment": {
           "Variables": {
-            "ENV": { "Ref": "env" },
-            "REGION": { "Ref": "AWS::Region" },
-            "SOURCE_EMAIL": { "Ref": "sourceEmail" }
+            "ENV": {
+              "Ref": "env"
+            },
+            "REGION": {
+              "Ref": "AWS::Region"
+            },
+            "SOURCE_EMAIL": {
+              "Ref": "sourceEmail"
+            }
           }
         },
-        "Role": { "Fn::GetAtt": ["LambdaExecutionRole", "Arn"] },
+        "Role": {
+          "Fn::GetAtt": [
+            "LambdaExecutionRole",
+            "Arn"
+          ]
+        },
         "Runtime": "nodejs14.x",
         "Layers": [],
         "Timeout": 25
@@ -116,40 +124,63 @@
             {
               "Effect": "Allow",
               "Principal": {
-                "Service": ["lambda.amazonaws.com"]
+                "Service": [
+                  "lambda.amazonaws.com"
+                ]
               },
-              "Action": ["sts:AssumeRole"]
+              "Action": [
+                "sts:AssumeRole"
+              ]
             }
           ]
         }
       }
     },
     "lambdaexecutionpolicy": {
-      "DependsOn": ["LambdaExecutionRole"],
+      "DependsOn": [
+        "LambdaExecutionRole"
+      ],
       "Type": "AWS::IAM::Policy",
       "Properties": {
         "PolicyName": "lambda-execution-policy",
-        "Roles": [{ "Ref": "LambdaExecutionRole" }],
+        "Roles": [
+          {
+            "Ref": "LambdaExecutionRole"
+          }
+        ],
         "PolicyDocument": {
           "Version": "2012-10-17",
           "Statement": [
             {
               "Effect": "Allow",
-              "Action": ["logs:CreateLogGroup", "logs:CreateLogStream", "logs:PutLogEvents"],
+              "Action": [
+                "logs:CreateLogGroup",
+                "logs:CreateLogStream",
+                "logs:PutLogEvents"
+              ],
               "Resource": {
                 "Fn::Sub": [
                   "arn:aws:logs:${region}:${account}:log-group:/aws/lambda/${lambda}:log-stream:*",
                   {
-                    "region": { "Ref": "AWS::Region" },
-                    "account": { "Ref": "AWS::AccountId" },
-                    "lambda": { "Ref": "LambdaFunction" }
+                    "region": {
+                      "Ref": "AWS::Region"
+                    },
+                    "account": {
+                      "Ref": "AWS::AccountId"
+                    },
+                    "lambda": {
+                      "Ref": "LambdaFunction"
+                    }
                   }
                 ]
               }
             },
             {
               "Effect": "Allow",
-              "Action": ["ses:SendEmail", "ses:SendRawEmail"],
+              "Action": [
+                "ses:SendEmail",
+                "ses:SendRawEmail"
+              ],
               "Resource": {
                 "Fn::Sub": [
                   "arn:aws:ses:${region}:${account}:identity/walter.vargaspena@gmail.com",
@@ -168,13 +199,18 @@
         }
       }
     },
-
     "LambdaTriggerPolicyUser": {
-      "DependsOn": ["LambdaExecutionRole"],
+      "DependsOn": [
+        "LambdaExecutionRole"
+      ],
       "Type": "AWS::IAM::Policy",
       "Properties": {
         "PolicyName": "amplify-lambda-execution-policy-User",
-        "Roles": [{ "Ref": "LambdaExecutionRole" }],
+        "Roles": [
+          {
+            "Ref": "LambdaExecutionRole"
+          }
+        ],
         "PolicyDocument": {
           "Version": "2012-10-17",
           "Statement": [
@@ -198,7 +234,10 @@
     },
     "LambdaEventSourceMappingUser": {
       "Type": "AWS::Lambda::EventSourceMapping",
-      "DependsOn": ["LambdaTriggerPolicyUser", "LambdaExecutionRole"],
+      "DependsOn": [
+        "LambdaTriggerPolicyUser",
+        "LambdaExecutionRole"
+      ],
       "Properties": {
         "BatchSize": 100,
         "Enabled": true,
@@ -208,7 +247,10 @@
           }
         },
         "FunctionName": {
-          "Fn::GetAtt": ["LambdaFunction", "Arn"]
+          "Fn::GetAtt": [
+            "LambdaFunction",
+            "Arn"
+          ]
         },
         "StartingPosition": "LATEST"
       }
@@ -221,7 +263,12 @@
       }
     },
     "Arn": {
-      "Value": { "Fn::GetAtt": ["LambdaFunction", "Arn"] }
+      "Value": {
+        "Fn::GetAtt": [
+          "LambdaFunction",
+          "Arn"
+        ]
+      }
     },
     "Region": {
       "Value": {
@@ -231,6 +278,14 @@
     "LambdaExecutionRole": {
       "Value": {
         "Ref": "LambdaExecutionRole"
+      }
+    },
+    "LambdaExecutionRoleArn": {
+      "Value": {
+        "Fn::GetAtt": [
+          "LambdaExecutionRole",
+          "Arn"
+        ]
       }
     }
   }
