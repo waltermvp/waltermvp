@@ -14,8 +14,13 @@
     "categories": {
       "function": {
         "userCreated": {
-          "sourceEmail": "walter.vargaspena@gmail.com"
+          "sourceEmail": "walter.vargaspena@gmail.com",
+          "deploymentBucketName": "amplify-waltermvp-dev-195726-deployment",
+          "s3Key": "amplify-builds/userCreated-79646a4c4f5669463372-build.zip"
         }
+      },
+      "api": {
+        "waltermvp": {}
       }
     }
   }
