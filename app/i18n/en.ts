@@ -7,10 +7,10 @@ const en = {
   welcomeScreen: {
     prescript: "Hi, my name is,",
     postscript:
-      "I'm a software engineer with a focus on detail, design and execution. I currently lead the mobile team @ Obviohealth, where we are revolutionizing the way clinical trials are run.",
+      "I'm a software engineer focusing on detail, design, and execution. I currently lead the mobile team @ Obviohealth. We are revolutionizing the approach to clinical trials.",
     readyForLaunch: "I build digital experiences for mobile and web.",
     name: "Walter Vargas-Pena",
-    exciting: "I build digital experiences for mobile and web.",
+    exciting: "I build digital experiences for",
   },
   errorScreen: {
     title: "Something went wrong!",
