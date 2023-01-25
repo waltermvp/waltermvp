@@ -5,10 +5,12 @@ const en = {
     back: "Back",
   },
   welcomeScreen: {
+    prescript: "Hi, my name is,",
     postscript:
-      "psst  — This probably isn't what your app looks like. (Unless your designer handed you these screens, and in that case, ship it!)",
-    readyForLaunch: "Your app, almost ready for launch!",
-    exciting: "(ohh, this is exciting!)",
+      "I'm a software engineer with a focus on detail, design and execution. I currently lead the mobile team @ Obviohealth, where we are revolutionizing the way clinical trials are run.",
+    readyForLaunch: "I build digital experiences for mobile and web.",
+    name: "Walter Vargas-Pena",
+    exciting: "I build digital experiences for mobile and web.",
   },
   errorScreen: {
     title: "Something went wrong!",
