@@ -1,6 +1,15 @@
 import { observer } from "mobx-react-lite"
 import React, { FC, useState, useEffect } from "react"
-import { Image, ImageStyle, TextStyle, View, ViewStyle, Button } from "react-native"
+import {
+  Image,
+  ImageStyle,
+  TextStyle,
+  View,
+  ViewStyle,
+  Button,
+  TouchableOpacity,
+  Linking,
+} from "react-native"
 import { Text } from "../components"
 import { isRTL } from "../i18n"
 import { AppStackScreenProps } from "../navigators"
@@ -14,6 +23,7 @@ import Animated, {
   Easing,
   withDelay,
 } from "react-native-reanimated"
+import { AntDesign } from "@expo/vector-icons"
 
 const welcomeLogo = require("../../assets/images/logo.svg")
 const welcomeFace = require("../../assets/images/welcome-face.png")
@@ -72,6 +82,21 @@ export const WelcomeScreen: FC<AppStackScreenProps<"Welcome">> = observer(functi
 
   return (
     <View style={$container}>
+      <TouchableOpacity
+        onPress={() => {
+          Linking.openURL("https://www.linkedin.com/in/waltermvp")
+        }}
+        style={{
+          alignSelf: "flex-end",
+          margin: spacing.large,
+          flexDirection: "row",
+          alignItems: "center",
+        }}
+      >
+        <Text>LinkedIn</Text>
+
+        <AntDesign name="linkedin-square" size={24} color={colors.palette.primary} />
+      </TouchableOpacity>
       <View style={$topContainer}>
         <Image style={$welcomeLogo} source={welcomeLogo} resizeMode="contain" />
         <Text tx="welcomeScreen.prescript" size="md" />
@@ -122,7 +147,7 @@ const $bottomContainer: ViewStyle = {
   flexShrink: 1,
   flexGrow: 0,
   flexBasis: "43%",
-  backgroundColor: "#3850D2",
+  backgroundColor: colors.palette.primary,
   borderTopLeftRadius: 16,
   borderTopRightRadius: 16,
   paddingHorizontal: spacing.large,
@@ -145,5 +170,5 @@ const $welcomeFace: ImageStyle = {
 
 const $welcomeHeading: TextStyle = {
   marginBottom: spacing.small,
-  color: "#3850D2",
+  color: colors.palette.primary,
 }
