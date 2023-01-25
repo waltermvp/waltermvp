@@ -1,18 +1,75 @@
 import { observer } from "mobx-react-lite"
-import React, { FC } from "react"
-import { Image, ImageStyle, TextStyle, View, ViewStyle } from "react-native"
+import React, { FC, useState, useEffect } from "react"
+import { Image, ImageStyle, TextStyle, View, ViewStyle, Button } from "react-native"
 import { Text } from "../components"
 import { isRTL } from "../i18n"
 import { AppStackScreenProps } from "../navigators"
 import { colors, spacing } from "../theme"
 import { useSafeAreaInsetsStyle } from "../utils/useSafeAreaInsetsStyle"
+import Animated, {
+  useSharedValue,
+  useAnimatedStyle,
+  withRepeat,
+  withTiming,
+  Easing,
+  withDelay,
+} from "react-native-reanimated"
 
 const welcomeLogo = require("../../assets/images/logo.svg")
 const welcomeFace = require("../../assets/images/welcome-face.png")
 
 export const WelcomeScreen: FC<AppStackScreenProps<"Welcome">> = observer(function WelcomeScreen() {
   const $bottomContainerInsets = useSafeAreaInsetsStyle(["bottom"])
-  //TODO ticker label ios + android + Web
+  const rotation = useSharedValue(0)
+  const [string, setString] = useState("iOS")
+
+  const animatedStyles = useAnimatedStyle(() => {
+    return {
+      transform: [{ rotateX: `${rotation.value}deg` }],
+    }
+  })
+
+  function animateIt(params: string) {
+    var toString = null
+    switch (params) {
+      case "iOS":
+        toString = "android"
+        break
+      case "android":
+        toString = "web"
+        break
+      case "web":
+        toString = "iOS"
+        break
+
+      default:
+        break
+    }
+
+    rotation.value = withDelay(
+      3333,
+      withRepeat(
+        withTiming(360, {
+          duration: 500,
+          easing: Easing.inOut(Easing.ease),
+        }),
+        1,
+        true,
+        (finished) => {
+          // console.log("finished: ", finished, toString)
+          if (finished) {
+            setString(toString)
+            rotation.value = 0
+            animateIt(toString)
+          }
+        },
+      ),
+    )
+  }
+  useEffect(() => {
+    animateIt(string)
+  }, [])
+
   return (
     <View style={$container}>
       <View style={$topContainer}>
@@ -25,13 +82,15 @@ export const WelcomeScreen: FC<AppStackScreenProps<"Welcome">> = observer(functi
           tx="welcomeScreen.name"
           preset="heading"
         />
-        {/* <Text
-          testID="welcome-heading"
-          style={$welcomeHeading}
-          tx="welcomeScreen.readyForLaunch"
-          preset="heading"
-        /> */}
-        <Text tx="welcomeScreen.exciting" preset="subheading" />
+        <View style={{ flexDirection: "row" }}>
+          <Text tx="welcomeScreen.exciting" size="lg" preset="subheading" />
+          <Animated.View style={[animatedStyles]}>
+            <Text preset={"subheading"} size="lg">
+              {" " + string}
+            </Text>
+          </Animated.View>
+          <Text preset="subheading" size="lg" text="."></Text>
+        </View>
         <Image style={$welcomeFace} source={welcomeFace} resizeMode="contain" />
       </View>
 
@@ -63,7 +122,6 @@ const $bottomContainer: ViewStyle = {
   flexShrink: 1,
   flexGrow: 0,
   flexBasis: "43%",
-  // backgroundColor: colors.background,
   backgroundColor: "#3850D2",
   borderTopLeftRadius: 16,
   borderTopRightRadius: 16,
@@ -71,9 +129,9 @@ const $bottomContainer: ViewStyle = {
   justifyContent: "space-around",
 }
 const $welcomeLogo: ImageStyle = {
-  height: 88,
-  width: "100%",
+  height: 150,
   marginBottom: spacing.huge,
+  marginTop: -spacing.massive * 2,
 }
 
 const $welcomeFace: ImageStyle = {
@@ -86,6 +144,6 @@ const $welcomeFace: ImageStyle = {
 }
 
 const $welcomeHeading: TextStyle = {
-  marginBottom: spacing.medium,
+  marginBottom: spacing.small,
   color: "#3850D2",
 }
