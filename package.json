@@ -2,7 +2,7 @@
   "name": "waltermvp",
   "version": "0.0.1",
   "private": true,
-  "main": "node_modules/expo/AppEntry.js",
+    "main": "node_modules/expo/AppEntry.js",
   "scripts": {
     "start": "react-native start",
     "ios": "react-native run-ios",
@@ -45,7 +45,7 @@
     "@react-navigation/stack": "~6.2.1",
     "apisauce": "2.1.5",
     "date-fns": "^2.29.2",
-    "expo": "~46.0.17",
+    "expo": "~46.0.19",
     "expo-application": "~4.2.2",
     "expo-constants": "~13.2.3",
     "expo-device": "~4.3.0",
@@ -54,7 +54,7 @@
     "expo-linking": "~3.2.4",
     "expo-localization": "13.1.0",
     "expo-modules-core": "~0.11.3",
-    "expo-splash-screen": "~0.16.1",
+    "expo-splash-screen": "~0.16.2",
     "expo-status-bar": "~1.4.0",
     "i18n-js": "3.9.2",
     "mobx": "6.6.0",
@@ -69,7 +69,9 @@
     "react-native-screens": "3.15.0",
     "reactotron-mst": "3.1.4",
     "reactotron-react-js": "^3.3.7",
-    "reactotron-react-native": "5.0.3"
+    "reactotron-react-native": "5.0.3",
+    "react-dom": "18.0.0",
+    "react-native-web": "~0.18.7"
   },
   "devDependencies": {
     "@babel/core": "^7.18.0",
