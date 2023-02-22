@@ -35,22 +35,6 @@
     }
   },
   "parameters": {
-    "AMPLIFY_function_userCreated_deploymentBucketName": {
-      "usedBy": [
-        {
-          "category": "function",
-          "resourceName": "userCreated"
-        }
-      ]
-    },
-    "AMPLIFY_function_userCreated_s3Key": {
-      "usedBy": [
-        {
-          "category": "function",
-          "resourceName": "userCreated"
-        }
-      ]
-    },
     "AMPLIFY_function_userCreated_sourceEmail": {
       "usedBy": [
         {

@@ -1,4 +1,24 @@
 {
+  "tallie": {
+    "awscloudformation": {
+      "AuthRoleName": "amplify-waltermvp-tallie-14052-authRole",
+      "UnauthRoleArn": "arn:aws:iam::902034749111:role/amplify-waltermvp-tallie-14052-unauthRole",
+      "AuthRoleArn": "arn:aws:iam::902034749111:role/amplify-waltermvp-tallie-14052-authRole",
+      "Region": "us-east-1",
+      "DeploymentBucketName": "amplify-waltermvp-tallie-14052-deployment",
+      "UnauthRoleName": "amplify-waltermvp-tallie-14052-unauthRole",
+      "StackName": "amplify-waltermvp-tallie-14052",
+      "StackId": "arn:aws:cloudformation:us-east-1:902034749111:stack/amplify-waltermvp-tallie-14052/f12ac300-b251-11ed-84d6-0eae24e14c39",
+      "AmplifyAppId": "d9lzc3aeq3798"
+    },
+    "categories": {
+      "function": {
+        "userCreated": {
+          "sourceEmail": " walter@epiphanyapps.com"
+        }
+      }
+    }
+  },
   "dev": {
     "awscloudformation": {
       "AuthRoleName": "amplify-waltermvp-dev-182537-authRole",
