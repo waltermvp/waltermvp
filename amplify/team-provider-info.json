@@ -16,6 +16,9 @@
         "userCreated": {
           "sourceEmail": " walter@epiphanyapps.com"
         }
+      },
+      "api": {
+        "waltermvp": {}
       }
     }
   },

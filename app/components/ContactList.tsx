@@ -21,6 +21,7 @@ export interface ContactListProps {
 
 type ContactItem = {
   title: string
+  subTitle: string
   value: string
   icon: React.ComponentProps<typeof MaterialCommunityIcons>["name"]
   color: string
@@ -29,12 +30,14 @@ type ContactItem = {
 const CONTACT_ITEMS: ContactItem[] = [
   {
     title: "WhatsApp",
+    subTitle: "(305)713-6249",
     value: "https://wa.me/13057136249?text=I'm%20interested%20in%20your%20bartending%20services.",
     icon: "whatsapp",
     color: "#25D366",
   },
   {
     title: "Instagram",
+    subTitle: "@reign_catering_miami",
     value: "https://www.instagram.com/reign_catering_miami",
     icon: "instagram",
     color: "#C13584",
@@ -154,11 +157,8 @@ export const ContactList = observer(function ContactList(props: ContactListProps
         style={$contactStyle}
         text="Save Contact"
         onPress={() => {
-          console.log("will save contact")
-
           const cardValue = shareVCard()
           downloadTxtFile(cardValue)
-          console.log(cardValue, "cardValue")
         }}
         RightAccessory={() => (
           <MaterialCommunityIcons
@@ -171,8 +171,10 @@ export const ContactList = observer(function ContactList(props: ContactListProps
       {items.map((item, index) => {
         return (
           <ListItem
+            key={index}
             containerStyle={$itemStyle}
             text={item.title}
+            subTitle={item.subTitle}
             textStyle={$itemTextStyle}
             RightComponent={
               <View style={{ flexDirection: "row", alignItems: "center" }}>
@@ -190,7 +192,6 @@ export const ContactList = observer(function ContactList(props: ContactListProps
               </View>
             }
             onPress={() => {
-              console.log("1234!")
               canOpenURL(item.value).then((supported) => {
                 if (supported) {
                   Linking.openURL(item.value)
@@ -201,7 +202,7 @@ export const ContactList = observer(function ContactList(props: ContactListProps
             }}
             // style={$welcomeFace}
             // size={LOGO_SIZE}
-          />
+          ></ListItem>
         )
       })}
     </View>

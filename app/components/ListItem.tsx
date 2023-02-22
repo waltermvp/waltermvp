@@ -31,6 +31,7 @@ export interface ListItemProps extends TouchableOpacityProps {
    * Text to display if not using `tx` or nested components.
    */
   text?: TextProps["text"]
+  subTitle?: TextProps["text"]
   /**
    * Text which is looked up via i18n.
    */
@@ -114,6 +115,7 @@ export function ListItem(props: ListItemProps) {
     rightIconColor,
     style,
     text,
+    subTitle,
     TextProps,
     topSeparator,
     tx,
@@ -124,6 +126,7 @@ export function ListItem(props: ListItemProps) {
   } = props
 
   const $textStyles = [$textStyle, $textStyleOverride, TextProps?.style]
+  const $subStyles = { fontSize: 16, color: colors.palette.neutral1500 } //[$textStyle, $textStyleOverride, TextProps?.style]
 
   const $containerStyles = [
     topSeparator && $separatorTop,
@@ -131,7 +134,11 @@ export function ListItem(props: ListItemProps) {
     $containerStyleOverride,
   ]
 
-  const $touchableStyles = [$touchableStyle, { minHeight: height }, style]
+  const $touchableStyles = [
+    $touchableStyle,
+    { minHeight: height, justifyContent: "space-between" },
+    style,
+  ]
 
   return (
     <View style={$containerStyles}>
@@ -143,11 +150,18 @@ export function ListItem(props: ListItemProps) {
           iconColor={leftIconColor}
           Component={LeftComponent}
         />
-
-        <Text {...TextProps} tx={tx} text={text} txOptions={txOptions} style={$textStyles}>
-          {children}
-        </Text>
-
+        <View style={{ flexDirection: "column" }}>
+          <Text {...TextProps} tx={tx} text={text} txOptions={txOptions} style={$textStyles}>
+            {children}
+          </Text>
+          <Text
+            {...TextProps}
+            tx={tx}
+            text={subTitle}
+            txOptions={txOptions}
+            style={$subStyles}
+          ></Text>
+        </View>
         <ListItemAction
           side="right"
           size={height}
