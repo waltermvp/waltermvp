@@ -1,6 +1,7 @@
 {
   "name": "waltermvp",
   "displayName": "waltermvp",
+  "privacy": "public",
   "expo": {
     "name": "waltermvp",
     "slug": "waltermvp",

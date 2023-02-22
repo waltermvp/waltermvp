@@ -5,12 +5,13 @@ const en = {
     back: "Back",
   },
   welcomeScreen: {
-    prescript: "Hi, my name is,",
+    prescript: "Hello, we are,",
+    exciting: "We host beautiful experiences for",
+
     postscript:
-      "I'm a software engineer focusing on detail, design, and execution. I currently lead the mobile team @ Obviohealth. We are revolutionizing the approach to clinical trials.",
+      "Reign Catering is your preferred bartending provider in the Miami area. Our master mixologist can create a custom cocktail menu for your event. We also provide bartending services for weddings, corporate events, and private parties.",
     readyForLaunch: "I build digital experiences for mobile and web.",
-    name: "Walter Vargas-Pena",
-    exciting: "I build digital experiences for",
+    name: "Reign Catering",
   },
   errorScreen: {
     title: "Something went wrong!",

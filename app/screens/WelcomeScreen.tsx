@@ -10,7 +10,7 @@ import {
   TouchableOpacity,
   Linking,
 } from "react-native"
-import { Text } from "../components"
+import { Text, ContactList } from "../components"
 import { isRTL } from "../i18n"
 import { AppStackScreenProps } from "../navigators"
 import { colors, spacing } from "../theme"
@@ -24,15 +24,17 @@ import Animated, {
   withDelay,
 } from "react-native-reanimated"
 import { AntDesign } from "@expo/vector-icons"
+import { useNavigation } from "@react-navigation/native"
+import MaterialCommunityIcons from "@expo/vector-icons/MaterialCommunityIcons"
 
-const welcomeLogo = require("../../assets/images/logo.svg")
-const welcomeFace = require("../../assets/images/welcome-face.png")
+const welcomeLogo = require("../../assets/images/noun-drink.svg")
+// const welcomeFace = require("../../assets/images/welcome-face.png")
 
 export const WelcomeScreen: FC<AppStackScreenProps<"Welcome">> = observer(function WelcomeScreen() {
   const $bottomContainerInsets = useSafeAreaInsetsStyle(["bottom"])
   const rotation = useSharedValue(0)
-  const [string, setString] = useState("iOS")
-
+  const [string, setString] = useState("weddings")
+  const navigation = useNavigation()
   const animatedStyles = useAnimatedStyle(() => {
     return {
       transform: [{ rotateX: `${rotation.value}deg` }],
@@ -42,14 +44,14 @@ export const WelcomeScreen: FC<AppStackScreenProps<"Welcome">> = observer(functi
   function animateIt(params: string) {
     var toString = null
     switch (params) {
-      case "iOS":
-        toString = "android"
+      case "weddings":
+        toString = "birthdays"
         break
-      case "android":
-        toString = "web"
+      case "birthdays":
+        toString = "baptisms"
         break
-      case "web":
-        toString = "iOS"
+      case "baptisms":
+        toString = "weddings"
         break
 
       default:
@@ -80,23 +82,36 @@ export const WelcomeScreen: FC<AppStackScreenProps<"Welcome">> = observer(functi
     animateIt(string)
   }, [])
 
+  // React.useLayoutEffect(() => {
+  //   navigation.setOptions({
+  //     headerRight: () => (
+  //       <TouchableOpacity
+  //         onPress={() => {
+  //           Linking.openURL("https://www.linkedin.com/in/waltermvp")
+  //         }}
+  //         style={$linkedIn}
+  //       >
+  //         <Text>LinkedIn</Text>
+
+  //         <AntDesign name="linkedin-square" size={24} color={colors.palette.primary} />
+  //       </TouchableOpacity>
+
+  //       // <Button
+  //       //   style={{ backgroundColor: color.primaryDarker }}
+  //       //   onPress={() => {
+  //       //     //TODO: pass variables via nested structure
+  //       //     navigation.navigate("addDisplayModal") //, { orgID });
+  //       //   }}
+  //       //   text="+"
+  //       // >
+  //       //   <AddIcon size="6" style={{ color: "white" }} />
+  //       // </Button>
+  //     ),
+  //   })
+  // }, [navigation])
+
   return (
     <View style={$container}>
-      <TouchableOpacity
-        onPress={() => {
-          Linking.openURL("https://www.linkedin.com/in/waltermvp")
-        }}
-        style={{
-          alignSelf: "flex-end",
-          margin: spacing.large,
-          flexDirection: "row",
-          alignItems: "center",
-        }}
-      >
-        <Text>LinkedIn</Text>
-
-        <AntDesign name="linkedin-square" size={24} color={colors.palette.primary} />
-      </TouchableOpacity>
       <View style={$topContainer}>
         <Image style={$welcomeLogo} source={welcomeLogo} resizeMode="contain" />
         <Text tx="welcomeScreen.prescript" size="md" />
@@ -116,10 +131,17 @@ export const WelcomeScreen: FC<AppStackScreenProps<"Welcome">> = observer(functi
           </Animated.View>
           <Text preset="subheading" size="lg" text="."></Text>
         </View>
-        <Image style={$welcomeFace} source={welcomeFace} resizeMode="contain" />
+        {/* <Image style={$welcomeFace} source={welcomeFace} resizeMode="contain" /> */}
+        <MaterialCommunityIcons
+          style={$welcomeFace}
+          name="party-popper"
+          size={LOGO_SIZE}
+          color={colors.palette.primary}
+        />
       </View>
-
       <View style={[$bottomContainer, $bottomContainerInsets]}>
+        <ContactList />
+
         <Text
           tx="welcomeScreen.postscript"
           size="md"
@@ -138,30 +160,34 @@ const $container: ViewStyle = {
 const $topContainer: ViewStyle = {
   flexShrink: 1,
   flexGrow: 1,
-  flexBasis: "57%",
-  justifyContent: "center",
+  flexBasis: "45%",
+  justifyContent: "flex-start",
   paddingHorizontal: spacing.large,
 }
 
 const $bottomContainer: ViewStyle = {
   flexShrink: 1,
   flexGrow: 0,
-  flexBasis: "43%",
+  flexBasis: "55%",
   backgroundColor: colors.palette.primary,
   borderTopLeftRadius: 16,
   borderTopRightRadius: 16,
   paddingHorizontal: spacing.large,
   justifyContent: "space-around",
 }
+
+const LOGO_SIZE = 150
 const $welcomeLogo: ImageStyle = {
-  height: 150,
-  marginBottom: spacing.huge,
-  marginTop: -spacing.massive * 2,
+  height: LOGO_SIZE,
+  width: LOGO_SIZE,
+  alignSelf: "flex-start",
+  // marginBottom: spacing.huge,
+  // marginTop: -spacing.massive * 2,
 }
 
 const $welcomeFace: ImageStyle = {
   height: 169,
-  width: 269,
+  width: 225,
   position: "absolute",
   bottom: -47,
   right: -80,
@@ -171,4 +197,9 @@ const $welcomeFace: ImageStyle = {
 const $welcomeHeading: TextStyle = {
   marginBottom: spacing.small,
   color: colors.palette.primary,
+}
+
+const $linkedIn: TextStyle = {
+  margin: spacing.large,
+  flexDirection: "row",
 }
