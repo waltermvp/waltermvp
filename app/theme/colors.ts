@@ -10,8 +10,8 @@ const palette = {
   neutral700: "#3C3836",
   neutral800: "#191015",
   neutral900: "#000000",
-  neutral1300: "rgba(22, 24, 28)",
-  neutral1500: "rgba(148, 154, 162)",
+  neutral1300: "rgba(22, 24, 28, 1)",
+  neutral1500: "rgba(148, 154, 162, 1)",
 
   primary: "#822790",
 

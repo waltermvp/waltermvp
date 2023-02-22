@@ -176,6 +176,7 @@ export const ContactList = observer(function ContactList(props: ContactListProps
             text={item.title}
             subTitle={item.subTitle}
             textStyle={$itemTextStyle}
+            subTitleTextStyle={$itemsubTitleTextStyle}
             RightComponent={
               <View style={{ flexDirection: "row", alignItems: "center" }}>
                 <MaterialCommunityIcons
@@ -225,7 +226,7 @@ const $itemStyle: ViewStyle = {
   marginVertical: spacing.small,
   padding: spacing.extraSmall,
   paddingLeft: spacing.small,
-  backgroundColor: colors.palette.neutral100,
+  backgroundColor: colors.palette.neutral1300,
   borderRadius: 13,
 }
 const $contactStyle: ViewStyle = {
@@ -236,7 +237,17 @@ const $contactStyle: ViewStyle = {
 }
 
 const $itemTextStyle: TextStyle = {
-  color: colors.palette.neutral900,
+  color: colors.palette.neutral100,
   fontSize: 28,
   fontWeight: "bold",
+  // borderColor: "blue",
+  // borderWidth: 3,
+  alignSelf: "flex-start",
+}
+
+const $itemsubTitleTextStyle: TextStyle = {
+  fontSize: 16,
+  color: colors.palette.neutral1500,
+  fontWeight: "600",
+  alignSelf: "flex-start",
 }

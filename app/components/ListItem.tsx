@@ -49,6 +49,8 @@ export interface ListItemProps extends TouchableOpacityProps {
    * Optional text style override.
    */
   textStyle?: StyleProp<TextStyle>
+  subTitleTextStyle?: StyleProp<TextStyle>
+
   /**
    * Pass any additional props directly to the Text component.
    */
@@ -121,12 +123,13 @@ export function ListItem(props: ListItemProps) {
     tx,
     txOptions,
     textStyle: $textStyleOverride,
+    subTitleTextStyle: $subTitleTextStyleOverride,
     containerStyle: $containerStyleOverride,
     ...TouchableOpacityProps
   } = props
 
   const $textStyles = [$textStyle, $textStyleOverride, TextProps?.style]
-  const $subStyles = { fontSize: 16, color: colors.palette.neutral1500 } //[$textStyle, $textStyleOverride, TextProps?.style]
+  const $subStyles = [$textStyle, $subTitleTextStyleOverride, TextProps?.style]
 
   const $containerStyles = [
     topSeparator && $separatorTop,
@@ -212,6 +215,7 @@ const $separatorBottom: ViewStyle = {
 
 const $textStyle: TextStyle = {
   paddingVertical: spacing.extraSmall,
+  color: colors.palette.neutral100,
   alignSelf: "center",
   flexGrow: 1,
   flexShrink: 1,
