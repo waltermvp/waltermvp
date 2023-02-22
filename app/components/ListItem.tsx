@@ -139,7 +139,7 @@ export function ListItem(props: ListItemProps) {
 
   const $touchableStyles = [
     $touchableStyle,
-    { minHeight: height, justifyContent: "space-between" },
+    { minHeight: height, justifyContent: "space-between", alignItems: "center" },
     style,
   ]
 
