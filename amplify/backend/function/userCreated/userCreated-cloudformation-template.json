@@ -1,6 +1,6 @@
 {
   "AWSTemplateFormatVersion": "2010-09-09",
-  "Description": "{\"createdOn\":\"Linux\",\"createdBy\":\"Amplify\",\"createdWith\":\"10.6.2\",\"stackType\":\"function-Lambda\",\"metadata\":{}}",
+  "Description": "{\"createdOn\":\"Mac\",\"createdBy\":\"Amplify\",\"createdWith\":\"10.7.3\",\"stackType\":\"function-Lambda\",\"metadata\":{}}",
   "Parameters": {
     "CloudWatchRule": {
       "Type": "String",
@@ -15,17 +15,6 @@
     },
     "s3Key": {
       "Type": "String"
-    },
-    "sourceEmail": {
-      "Type": "String"
-    },
-    "apiwaltermvpGraphQLAPIIdOutput": {
-      "Type": "String",
-      "Default": "apiwaltermvpGraphQLAPIIdOutput"
-    },
-    "apiwaltermvpGraphQLAPIEndpointOutput": {
-      "Type": "String",
-      "Default": "apiwaltermvpGraphQLAPIEndpointOutput"
     }
   },
   "Conditions": {
@@ -80,9 +69,6 @@
             },
             "REGION": {
               "Ref": "AWS::Region"
-            },
-            "SOURCE_EMAIL": {
-              "Ref": "sourceEmail"
             }
           }
         },
@@ -103,12 +89,12 @@
         "RoleName": {
           "Fn::If": [
             "ShouldNotCreateEnvResources",
-            "waltermvpLambdaRole6059ae87",
+            "waltermvpLambdaRoledc358832",
             {
               "Fn::Join": [
                 "",
                 [
-                  "waltermvpLambdaRole6059ae87",
+                  "waltermvpLambdaRoledc358832",
                   "-",
                   {
                     "Ref": "env"
@@ -174,85 +160,9 @@
                   }
                 ]
               }
-            },
-            {
-              "Effect": "Allow",
-              "Action": [
-                "ses:SendEmail",
-                "ses:SendRawEmail"
-              ],
-              "Resource": {
-                "Fn::Sub": [
-                  "arn:aws:ses:${region}:${account}:identity/walter.vargaspena@gmail.com",
-                  {
-                    "region": {
-                      "Ref": "AWS::Region"
-                    },
-                    "account": {
-                      "Ref": "AWS::AccountId"
-                    }
-                  }
-                ]
-              }
             }
           ]
         }
-      }
-    },
-    "LambdaTriggerPolicyUser": {
-      "DependsOn": [
-        "LambdaExecutionRole"
-      ],
-      "Type": "AWS::IAM::Policy",
-      "Properties": {
-        "PolicyName": "amplify-lambda-execution-policy-User",
-        "Roles": [
-          {
-            "Ref": "LambdaExecutionRole"
-          }
-        ],
-        "PolicyDocument": {
-          "Version": "2012-10-17",
-          "Statement": [
-            {
-              "Effect": "Allow",
-              "Action": [
-                "dynamodb:DescribeStream",
-                "dynamodb:GetRecords",
-                "dynamodb:GetShardIterator",
-                "dynamodb:ListStreams"
-              ],
-              "Resource": {
-                "Fn::ImportValue": {
-                  "Fn::Sub": "${apiwaltermvpGraphQLAPIIdOutput}:GetAtt:UserTable:StreamArn"
-                }
-              }
-            }
-          ]
-        }
-      }
-    },
-    "LambdaEventSourceMappingUser": {
-      "Type": "AWS::Lambda::EventSourceMapping",
-      "DependsOn": [
-        "LambdaTriggerPolicyUser",
-        "LambdaExecutionRole"
-      ],
-      "Properties": {
-        "BatchSize": 100,
-        "Enabled": true,
-        "EventSourceArn": {
-          "Fn::ImportValue": {
-            "Fn::Sub": "${apiwaltermvpGraphQLAPIIdOutput}:GetAtt:UserTable:StreamArn"
-          }
-        },
-        "FunctionName": {
-          "Fn::GetAtt": [
-            "LambdaFunction",
-            "Arn"
-          ]
-        },
-        "StartingPosition": "LATEST"
       }
     }
   },

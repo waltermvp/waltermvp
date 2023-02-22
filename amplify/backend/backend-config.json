@@ -20,22 +20,20 @@
   "function": {
     "userCreated": {
       "build": true,
-      "dependsOn": [
-        {
-          "attributes": [
-            "GraphQLAPIIdOutput",
-            "GraphQLAPIEndpointOutput"
-          ],
-          "category": "api",
-          "resourceName": "waltermvp"
-        }
-      ],
       "providerPlugin": "awscloudformation",
       "service": "Lambda"
     }
   },
   "parameters": {
-    "AMPLIFY_function_userCreated_sourceEmail": {
+    "AMPLIFY_function_userCreated_deploymentBucketName": {
+      "usedBy": [
+        {
+          "category": "function",
+          "resourceName": "userCreated"
+        }
+      ]
+    },
+    "AMPLIFY_function_userCreated_s3Key": {
       "usedBy": [
         {
           "category": "function",

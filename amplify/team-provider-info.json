@@ -14,7 +14,8 @@
     "categories": {
       "function": {
         "userCreated": {
-          "sourceEmail": " walter@epiphanyapps.com"
+          "deploymentBucketName": "amplify-waltermvp-tallie-14052-deployment",
+          "s3Key": "amplify-builds/userCreated-594233777a3159565974-build.zip"
         }
       },
       "api": {
