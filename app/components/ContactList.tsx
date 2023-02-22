@@ -151,6 +151,7 @@ export const ContactList = observer(function ContactList(props: ContactListProps
   return (
     <View style={$styles}>
       <Button
+        style={$contactStyle}
         text="Save Contact"
         onPress={() => {
           console.log("will save contact")
@@ -159,6 +160,13 @@ export const ContactList = observer(function ContactList(props: ContactListProps
           downloadTxtFile(cardValue)
           console.log(cardValue, "cardValue")
         }}
+        RightAccessory={() => (
+          <MaterialCommunityIcons
+            name="download"
+            size={LOGO_SIZE_SMALL}
+            color={colors.palette.primary}
+          />
+        )}
       />
       {items.map((item, index) => {
         return (
@@ -219,6 +227,13 @@ const $itemStyle: ViewStyle = {
   backgroundColor: colors.palette.neutral100,
   borderRadius: 13,
 }
+const $contactStyle: ViewStyle = {
+  justifyContent: "space-between",
+  backgroundColor: colors.palette.neutral200,
+  width: "75%",
+  alignSelf: "center",
+}
+
 const $itemTextStyle: TextStyle = {
   color: colors.palette.neutral900,
   fontSize: 28,
