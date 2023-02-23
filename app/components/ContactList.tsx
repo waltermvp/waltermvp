@@ -67,7 +67,7 @@ export const ContactList = observer(function ContactList(props: ContactListProps
     contact.firstName = "Angelica"
     // contact.middleName = "J"
     contact.lastName = "Gianos"
-    contact.organization = "ACME Corporation"
+    contact.organization = "Reign Catering"
 
     //link to image
     // contact.photo.attachFromUrl(
@@ -103,7 +103,7 @@ export const ContactList = observer(function ContactList(props: ContactListProps
     // contact.workFax = "312-555-1717"
 
     // set email addresses
-    contact.email = "angelica@reigncateringmiami.com"
+    // contact.email = "angelica@reigncateringmiami.com"
     contact.workEmail = "angelica@reigncateringmiami.com"
     //set logo of organization or personal logo (also supports embedding, see above)
     // contact.logo.attachFromUrl("https://avatars2.githubusercontent.com/u/5659221?v=3&s=460", "JPEG")
@@ -128,7 +128,7 @@ export const ContactList = observer(function ContactList(props: ContactListProps
 
     //set social media URLs
     contact.socialUrls["whatsapp"] = "https://wa.me/13057136249"
-    contact.socialUrls["instagram"] = "https://www.instagram.com/reign_catering_miami"
+    contact.socialUrls["instagram"] = "reign_catering_miami"
 
     // contact.socialUrls["facebook"] = "https://..."
     // contact.socialUrls["linkedIn"] = "https://..."
@@ -151,8 +151,8 @@ export const ContactList = observer(function ContactList(props: ContactListProps
     return contact.getFormattedString()
   }
   const dynamicLogoSize = useBreakpointValue({
-    base: LOGO_SIZE_SMALL / 2,
-    sm: LOGO_SIZE_SMALL / 2,
+    base: LOGO_SIZE_SMALL / 1.5,
+    sm: LOGO_SIZE_SMALL / 1.5,
     md: LOGO_SIZE_SMALL,
   })
 
