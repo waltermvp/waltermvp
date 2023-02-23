@@ -56,7 +56,7 @@ export const WelcomeScreen: FC<AppStackScreenProps<"Welcome">> = observer(functi
   })
 
   const subtitleSize = useBreakpointValue({
-    base: 12,
+    base: 14,
     sm: 18,
     md: 32,
   })

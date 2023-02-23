@@ -2,14 +2,13 @@ import * as React from "react"
 import { Linking, StyleProp, TextStyle, View, ViewStyle } from "react-native"
 import { observer } from "mobx-react-lite"
 import { colors, spacing, typography } from "../theme"
-import { Text } from "./Text"
 import MaterialCommunityIcons from "@expo/vector-icons/MaterialCommunityIcons"
 import SimpleLineIcons from "@expo/vector-icons/SimpleLineIcons"
 import { ListItem } from "./ListItem"
 import { canOpenURL } from "expo-linking"
 import { Button } from "./Button"
 import vCard from "vcards-js"
-import { Box, useBreakpointValue } from "native-base"
+import { useBreakpointValue } from "native-base"
 
 export interface ContactListProps {
   /**
