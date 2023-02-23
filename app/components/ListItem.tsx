@@ -108,7 +108,7 @@ export function ListItem(props: ListItemProps) {
   const {
     bottomSeparator,
     children,
-    height = 56,
+    height,
     LeftComponent,
     leftIcon,
     leftIconColor,
@@ -214,7 +214,7 @@ const $separatorBottom: ViewStyle = {
 }
 
 const $textStyle: TextStyle = {
-  paddingVertical: spacing.extraSmall,
+  // paddingVertical: spacing.extraSmall,
   color: colors.palette.neutral100,
   alignSelf: "center",
   flexGrow: 1,

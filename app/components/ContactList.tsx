@@ -9,6 +9,7 @@ import { ListItem } from "./ListItem"
 import { canOpenURL } from "expo-linking"
 import { Button } from "./Button"
 import vCard from "vcards-js"
+import { Box, useBreakpointValue } from "native-base"
 
 export interface ContactListProps {
   /**
@@ -150,6 +151,22 @@ export const ContactList = observer(function ContactList(props: ContactListProps
     // console.log(contact.getFormattedString(), "formatted string")
     return contact.getFormattedString()
   }
+  const dynamicLogoSize = useBreakpointValue({
+    base: LOGO_SIZE_SMALL / 2,
+    sm: LOGO_SIZE_SMALL / 2,
+    md: LOGO_SIZE_SMALL,
+  })
+
+  const itemTitleSize = useBreakpointValue({
+    base: 32 / 2,
+    sm: 32 / 2,
+    md: 32,
+  })
+  const itemSubtitleSize = useBreakpointValue({
+    base: 24 / 2,
+    sm: 24 / 2,
+    md: 24,
+  })
 
   return (
     <View style={$styles}>
@@ -163,7 +180,7 @@ export const ContactList = observer(function ContactList(props: ContactListProps
         RightAccessory={() => (
           <MaterialCommunityIcons
             name="download"
-            size={LOGO_SIZE_SMALL}
+            size={dynamicLogoSize}
             color={colors.palette.primary}
           />
         )}
@@ -175,19 +192,19 @@ export const ContactList = observer(function ContactList(props: ContactListProps
             containerStyle={$itemStyle}
             text={item.title}
             subTitle={item.subTitle}
-            textStyle={$itemTextStyle}
-            subTitleTextStyle={$itemsubTitleTextStyle}
+            textStyle={[$itemTextStyle, { fontSize: itemTitleSize }]}
+            subTitleTextStyle={[$itemsubTitleTextStyle, { fontSize: itemSubtitleSize }]}
             RightComponent={
               <View style={{ flexDirection: "row", alignItems: "center" }}>
                 <MaterialCommunityIcons
                   name={item.icon}
-                  size={LOGO_SIZE_SMALL}
+                  size={dynamicLogoSize}
                   color={item.color}
                 />
                 <SimpleLineIcons
                   style={{ fontWeight: "600" }}
                   name={"arrow-right"}
-                  size={LOGO_SIZE_SMALL / 2}
+                  size={dynamicLogoSize / 2}
                   color={item.color}
                 />
               </View>

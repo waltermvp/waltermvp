@@ -26,6 +26,8 @@ import Animated, {
 import { AntDesign } from "@expo/vector-icons"
 import { useNavigation } from "@react-navigation/native"
 import MaterialCommunityIcons from "@expo/vector-icons/MaterialCommunityIcons"
+import { Box, useBreakpointValue } from "native-base"
+import { ScrollView } from "react-native-gesture-handler"
 
 const welcomeLogo = require("../../assets/images/noun-drink.svg")
 // const welcomeFace = require("../../assets/images/welcome-face.png")
@@ -39,6 +41,24 @@ export const WelcomeScreen: FC<AppStackScreenProps<"Welcome">> = observer(functi
     return {
       transform: [{ rotateX: `${rotation.value}deg` }],
     }
+  })
+
+  const mainLogoSize = useBreakpointValue({
+    base: LOGO_SIZE / 1.5,
+    sm: LOGO_SIZE / 1.5,
+    md: LOGO_SIZE,
+  })
+
+  const dynamicLogoSize = useBreakpointValue({
+    base: LOGO_SIZE / 2,
+    sm: LOGO_SIZE / 2,
+    md: LOGO_SIZE,
+  })
+
+  const subtitleSize = useBreakpointValue({
+    base: 12,
+    sm: 18,
+    md: 32,
   })
 
   function animateIt(params: string) {
@@ -82,6 +102,24 @@ export const WelcomeScreen: FC<AppStackScreenProps<"Welcome">> = observer(functi
     animateIt(string)
   }, [])
 
+  const $welcomeLogo: ImageStyle = {
+    height: mainLogoSize,
+    width: mainLogoSize,
+    alignSelf: "flex-start",
+    // marginBottom: spacing.huge,
+    // marginTop: -spacing.massive * 2,
+  }
+
+  const $welcomeFace: ImageStyle = {
+    height: dynamicLogoSize,
+    width: dynamicLogoSize,
+    alignSelf: "flex-end",
+    position: "absolute",
+    bottom: -10,
+    right: -10,
+    transform: [{ scaleX: isRTL ? -1 : 1 }],
+  }
+
   // React.useLayoutEffect(() => {
   //   navigation.setOptions({
   //     headerRight: () => (
@@ -123,30 +161,39 @@ export const WelcomeScreen: FC<AppStackScreenProps<"Welcome">> = observer(functi
           preset="heading"
         />
         <View style={{ flexDirection: "row" }}>
-          <Text tx="welcomeScreen.exciting" size="lg" preset="subheading" />
+          <Text tx="welcomeScreen.exciting" style={{ fontSize: subtitleSize }} />
           <Animated.View style={[animatedStyles]}>
-            <Text preset={"subheading"} size="lg">
+            <Text //preset={"subheading"}
+              style={{ color: colors.palette.primary, fontSize: subtitleSize }}
+            >
               {" " + string}
             </Text>
           </Animated.View>
-          <Text preset="subheading" size="lg" text="."></Text>
+          <Text //preset="subheading"
+            text="."
+          ></Text>
         </View>
         {/* <Image style={$welcomeFace} source={welcomeFace} resizeMode="contain" /> */}
         <MaterialCommunityIcons
           style={$welcomeFace}
           name="party-popper"
-          size={LOGO_SIZE}
+          size={dynamicLogoSize}
           color={colors.palette.primary}
         />
       </View>
       <View style={[$bottomContainer, $bottomContainerInsets]}>
-        <ContactList />
+        <ScrollView
+          style={{ height: "100%", width: "100%" }}
+          contentContainerStyle={{ marginTop: spacing.large }}
+        >
+          <ContactList />
 
-        <Text
-          tx="welcomeScreen.postscript"
-          size="md"
-          style={{ color: colors.palette.neutral100 }}
-        />
+          <Text
+            tx="welcomeScreen.postscript"
+            size="md"
+            style={{ color: colors.palette.neutral100, fontSize: 16 }}
+          />
+        </ScrollView>
       </View>
     </View>
   )
@@ -160,7 +207,7 @@ const $container: ViewStyle = {
 const $topContainer: ViewStyle = {
   flexShrink: 1,
   flexGrow: 1,
-  flexBasis: "45%",
+  flexBasis: "35%",
   justifyContent: "flex-start",
   paddingHorizontal: spacing.large,
 }
@@ -168,7 +215,7 @@ const $topContainer: ViewStyle = {
 const $bottomContainer: ViewStyle = {
   flexShrink: 1,
   flexGrow: 0,
-  flexBasis: "55%",
+  flexBasis: "65%",
   backgroundColor: colors.palette.primary,
   borderTopLeftRadius: 16,
   borderTopRightRadius: 16,
@@ -177,23 +224,6 @@ const $bottomContainer: ViewStyle = {
 }
 
 const LOGO_SIZE = 150
-const $welcomeLogo: ImageStyle = {
-  height: LOGO_SIZE,
-  width: LOGO_SIZE,
-  alignSelf: "flex-start",
-  // marginBottom: spacing.huge,
-  // marginTop: -spacing.massive * 2,
-}
-
-const $welcomeFace: ImageStyle = {
-  height: 169,
-  width: 225,
-  position: "absolute",
-  bottom: -47,
-  right: -80,
-  transform: [{ scaleX: isRTL ? -1 : 1 }],
-}
-
 const $welcomeHeading: TextStyle = {
   marginBottom: spacing.small,
   color: colors.palette.primary,

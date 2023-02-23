@@ -11,7 +11,7 @@ const en = {
     postscript:
       "Reign Catering is your preferred bartending provider in the Miami area. Our master mixologist can create a custom cocktail menu for your event. We also provide bartending services for weddings, corporate events, and private parties.",
     readyForLaunch: "I build digital experiences for mobile and web.",
-    name: "Reign Catering",
+    name: "REIGN CATERING",
   },
   errorScreen: {
     title: "Something went wrong!",

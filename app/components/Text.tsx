@@ -1,8 +1,11 @@
 import i18n from "i18n-js"
 import React from "react"
 import { StyleProp, Text as RNText, TextProps as RNTextProps, TextStyle } from "react-native"
+// import { Text as NBText } from "native-base"
 import { isRTL, translate, TxKeyPath } from "../i18n"
 import { colors, typography } from "../theme"
+import { ResponsiveValue } from "native-base/lib/typescript/components/types"
+import { IFontSize } from "native-base/lib/typescript/theme/base/typography"
 
 type Sizes = keyof typeof $sizeStyles
 type Weights = keyof typeof typography.primary
@@ -42,6 +45,8 @@ export interface TextProps extends RNTextProps {
    * Children components.
    */
   children?: React.ReactNode
+
+  // fontSize: ResponsiveValue<IFontSize | number | (string & {})>
 }
 
 /**
@@ -51,7 +56,17 @@ export interface TextProps extends RNTextProps {
  * - [Documentation and Examples](https://github.com/infinitered/ignite/blob/master/docs/Components-Text.md)
  */
 export function Text(props: TextProps) {
-  const { weight, size, tx, txOptions, text, children, style: $styleOverride, ...rest } = props
+  const {
+    weight,
+    size,
+    tx,
+    txOptions,
+    text,
+    children,
+    style: $styleOverride,
+    // fontSize,
+    ...rest
+  } = props
 
   const i18nText = tx && translate(tx, txOptions)
   const content = i18nText || text || children
